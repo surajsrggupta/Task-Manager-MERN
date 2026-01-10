@@ -1,68 +1,117 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Google Font import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background: #454546; /* Light Grey Background */
+  color: #ffffff;
 }
 
+/* Main Container */
+.App {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* Halki si shadow */
+}
+
+/* Headings */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  text-align: center;
+  color: #6c5ce7; /* Purple Theme */
+  margin-bottom: 30px;
+  font-weight: 600;
 }
 
-button {
+/* Form Styling */
+.create {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  flex-wrap: wrap; /* Mobile friendly */
+}
+
+.create label {
+  display: none; /* Label ki zaroorat nahi, placeholder kaafi hai */
+}
+
+.create input {
+  flex-grow: 1; /* Jagah gherega */
+  padding: 12px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.create input:focus {
+  border-color: #6c5ce7;
+}
+
+.create button {
+  padding: 12px 25px;
+  background: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.create button:hover {
+  background: #5649c0;
+}
+
+/* Task Card Styling */
+.tasks div {
+  background: white;
+  border: 1px solid #eee !important; /* Purana style override */
+  border-left: 5px solid #6c5ce7 !important; /* Left purple border */
+  padding: 20px !important;
+  margin-bottom: 15px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.tasks h3 {
+  font-size: 1.2rem;
+  color: #2d3436;
+  margin-bottom: 5px;
+}
+
+.tasks p {
+  color: #636e72;
+  font-size: 0.9rem;
+}
+
+/* Delete Button Styling */
+.tasks span {
+  position: static !important; /* Relative position hataya */
+  background: #ffeaa7 !important;
+  color: #d63031 !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  font-size: 0.8rem !important;
+  transition: 0.2s;
+}
+
+.tasks span:hover {
+  background: #ff7675 !important;
+  color: white !important;
 }
