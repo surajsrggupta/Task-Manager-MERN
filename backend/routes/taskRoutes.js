@@ -37,4 +37,25 @@ router.delete("/:id",async(req,res)=>{
     }
 })
 
+
+//update
+
+router.put("/:id",async(req,res)=>{
+  try {
+      const {status} = req.body;
+  
+      const updatedTask = await TaskModel.findByIdAndUpdate(req.params.id, {status:status},{new: true});
+  
+      res.json(updatedTask);
+    //   console.log(`heyyy ${updatedTask}`);
+      
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+})
+
+
+
+
+
 export default router;

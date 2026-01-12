@@ -1,42 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* Poori Body ka color aur font */
+body {
+  background-color: #303133;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 50px;
+}
+
+/* App ka Main Dabba (Container) */
+.App {
+  background: rgb(214, 214, 214);
+  width: 400px;
   padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
   text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Input aur Add Button wali line */
+.box {
+  display: flex;
+  flex-direction: column  ;
+  gap: 10px;
+  margin-bottom: 20px; 
+  height: 10vw;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.taskBox{
+  display: flex;
+  align-items: center;
+  height: 5vw;
+  gap: 5px;
+  border-radius: 10px;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+input {
+  flex-grow: 1;
+  padding: 10px;
+  margin-left: 2px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
 }
 
-.card {
-  padding: 2em;
+input:focus {
+  border-color: #4CAF50;
 }
 
-.read-the-docs {
-  color: #888;
+/* Add Button Style */
+button {
+ 
+  background-color: burlywood;
+  padding: 12px 20px;
+  margin: 5px 2px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Task List Style */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.2s;
+}
+
+li:hover {
+  background-color: #fafafa;
+}
+
+/* Checkbox Style */
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #4CAF50;
+}
+
+/* Delete Button Specific */
+li button {
+  background-color: transparent;
+  color: #ff4444;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+li button:hover {
+  background-color: #ffe5e5;
+  color: #cc0000;
 }
