@@ -113,3 +113,27 @@ li button:hover {
   background-color: #ffe5e5;
   color: #cc0000;
 }
+
+
+
+/* Loading Spinner Styles */
+.spinner-container {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #d81b60; /* Tera Pink theme color */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
