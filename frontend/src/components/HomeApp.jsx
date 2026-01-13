@@ -4,16 +4,20 @@ import TaskForm from "./TaskForm";
 const HomeApp = () => {
 
     const [tasks, setTasks] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const effectEventFetchTasks = useEffectEvent(async()=>{
         try {
+            setLoading(true);
             const response = await fetch("http://localhost:3000/api/task");
             const data = await response.json();
             if(response.ok){
                 setTasks(data);
+                setLoading(false);
             }
         } catch (error) {
             console.log(`Error hua: ${error.message}`);
+            setLoading(false);
         }
     })
 
@@ -59,6 +63,17 @@ const HomeApp = () => {
   return (
     <div>
         <h1>MERN Task Manager</h1>
+
+        {loading?(
+            <div>
+                <div>
+
+                </div>
+                <p>Loading...</p>
+            </div>
+        ):(
+
+  <>
             <TaskForm/>
         <div className="box" style={{backgroundColor:"black"}}>
         {tasks && tasks.map((task)=>(
@@ -77,7 +92,22 @@ const HomeApp = () => {
             </div>
         ))}
         </div>
+        </>
       
+
+
+            
+        )
+        
+
+
+
+
+
+
+
+
+    }     
     </div>
   )
 }
