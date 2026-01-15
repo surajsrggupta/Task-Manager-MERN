@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import taskRoutes from "../routes/taskRoutes.js";
+import userRoutes from "../routes/userRoutes.js";
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/task", taskRoutes);
+
+
+app.use("/user", userRoutes);
 
 
 
