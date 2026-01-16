@@ -1,20 +1,27 @@
 import mongoose, {Schema,model} from "mongoose";
 
 // yeh schema bann gya 
-const taskSchema = new Schema({
+const taskSchema = new Schema(
+  {
     title: {
-        type: String,
-        required:true,
+      type: String,
+      required: true,
     },
-    description:{
-        type: String,
-        
+    description: {
+      type: String,
     },
-    status:{
-        type: String,
-        default: "pending",
-    }
-},{timestamps:true})
+    status: {
+      type: String,
+      default: "pending",
+    },
+    userID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  { timestamps: true },
+);
 
 // model bnana hai
 

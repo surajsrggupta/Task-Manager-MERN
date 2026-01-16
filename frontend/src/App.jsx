@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       {/* <Try/> */}
-      <div className="App">{!token ? <Login setToken = {setToken} /> : <HomeApp />}</div>
+      <div className="App">{!token ? <Login setToken = {setToken} /> : <HomeApp token = {token} />}</div>
     </>
   );
 }

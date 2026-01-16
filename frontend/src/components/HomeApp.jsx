@@ -1,19 +1,26 @@
 import { useEffect, useEffectEvent, useState } from "react";
 import TaskForm from "./TaskForm";
 
-const HomeApp = () => {
-  const [tasks, setTasks] = useState(null);
+const HomeApp = ({token}) => {
+  const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const effectEventFetchTasks = useEffectEvent(async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/api/task");
+      const response = await fetch("http://localhost:3000/api/task",{
+        headers:{
+          "x-auth-token" : token
+        }
+      });
       const data = await response.json();
-      if (response.ok) {
-        setTasks(data);
-        setLoading(false);
-      }
+     setLoading(false);
+     if (response.ok) {
+       setTasks(data);
+     } else {
+       console.error("Task fetch failed");
+     }
+
     } catch (error) {
       console.log(`Error hua: ${error.message}`);
       setLoading(false);
@@ -21,8 +28,10 @@ const HomeApp = () => {
   });
 
   useEffect(() => {
-    effectEventFetchTasks();
-  }, []);
+   if(token){
+     effectEventFetchTasks();
+   }
+  }, [token]);
 
   const handleDelete = async (id) => {
     const isConfirmed = window.confirm("Are You Sure?");
@@ -31,29 +40,39 @@ const HomeApp = () => {
 
     const response = await fetch(`http://localhost:3000/api/task/${id}`, {
       method: "DELETE",
+      headers:{
+        "x-auth-token": token,
+      }
     });
 
-    if (response.ok) {
-      setTasks(tasks.filter((task) => task._id != id));
-    }
+  if (!response.ok) {
+    alert("Delete failed");
+    return;
+  }
+
+  setTasks((prev) => prev.filter((task) => task._id !== id));
   };
 
   const toggleStatus = async (id, currStatus) => {
-    const newStatus = currStatus == "pending" ? "completed" : "pending"; // toggle
+    const newStatus = currStatus === "pending" ? "completed" : "pending"; // toggle
 
     const response = await fetch(`http://localhost:3000/api/task/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" , "x-auth-token": token},
       body: JSON.stringify({ status: newStatus }),
     });
 
-    if (response.ok) {
-      setTasks(
-        tasks.map((task) =>
-          task._id === id ? { ...task, status: newStatus } : task,
-        ),
-      );
-    }
+     if (!response.ok) {
+       alert("Status update failed");
+       return;
+     }
+
+     setTasks((prev) =>
+       prev.map((task) =>
+         task._id === id ? { ...task, status: newStatus } : task,
+       ),
+     );
+
   };
 
   return (
@@ -67,7 +86,7 @@ const HomeApp = () => {
         </div>
       ) : (
         <>
-          <TaskForm />
+          <TaskForm token={token} setTasks={setTasks} />
           <div className="box" style={{ backgroundColor: "black" }}>
             {tasks &&
               tasks.map((task) => (
@@ -87,7 +106,7 @@ const HomeApp = () => {
                   <h3
                     style={{
                       textDecoration:
-                        task.status == "completed" ? "line-through" : "none",
+                        task.status === "completed" ? "line-through" : "none",
                     }}
                   >
                     {task.title}

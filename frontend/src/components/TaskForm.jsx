@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TaskForm = () => {
+const TaskForm = ({token, setTasks}) => {
 
   const initialState = {
     title:"",
@@ -24,13 +24,20 @@ const TaskForm = () => {
   const handleSubmit = async(e)=>{
     e.preventDefault();
 
+    if (!form.title || !form.description) {
+      setForm((prev) => ({ ...prev, error: "All fields are required" }));
+      return;
+    }
+
     const task = { title: form.title, description: form.description};
 
-    const response = await fetch ( " http://localhost:3000/api/task",{
+
+    const response = await fetch ( "http://localhost:3000/api/task/new",{
       method: "POST",
       body: JSON.stringify(task),
       headers:{
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "x-auth-token": token,
       }
     });
 
@@ -41,18 +48,18 @@ const TaskForm = () => {
   setForm(prev => {
     return {
       ...prev,
-      error: json.error
+      error: json.error || "Something Went Wrong",
     };
   });
+  return;
 }
 
-if(response.ok){
- setForm(initialState);
- console.log(`naya taks add: ${json}`);
 
- //window reload temporary
- window.location.reload();
+if (response.ok) {
+  setTasks((prev) => [json, ...prev]);
+setForm(initialState);
 }
+
 
   }
   

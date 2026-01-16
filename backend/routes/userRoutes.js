@@ -69,9 +69,18 @@ router.post("/login", async (req, res) => {
     }
 
     // 4️⃣ Create token with expiry
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      {
+        user: {
+          id: user._id, // ✅ user object me id
+          email: user.email, // optional
+        },
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      },
+    );
 
     // 5️⃣ Safe response
     res.status(200).json({
