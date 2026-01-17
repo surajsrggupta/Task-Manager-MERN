@@ -1,139 +1,179 @@
-/* Poori Body ka color aur font */
-body {
-  background-color: #303133;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
+/* ===== RESET ===== */
+* {
   margin: 0;
-  padding-top: 50px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
-/* App ka Main Dabba (Container) */
+/* ===== APP LAYOUT ===== */
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
 .App {
-  background: rgb(214, 214, 214);
-  width: 400px;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
+/* ===== HEADINGS ===== */
 h1 {
   text-align: center;
-  color: #333;
   margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+  background: linear-gradient(90deg, #22d3ee, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Input aur Add Button wali line */
-.box {
-  display: flex;
-  flex-direction: column  ;
-  gap: 10px;
-  margin-bottom: 20px; 
-  height: 10vw;
-  padding: 10px;
-  border-radius: 10px;
+/* ===== LOGIN ===== */
+form {
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
 }
 
-.taskBox{
-  display: flex;
-  align-items: center;
-  height: 5vw;
-  gap: 5px;
-  border-radius: 10px;
-  
+form h2 {
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-
-input {
-  flex-grow: 1;
-  padding: 10px;
-  margin-left: 2px;
-  border: 2px solid #e0e0e0;
+input,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 0.8rem;
   border-radius: 8px;
-  font-size: 16px;
+  border: 1px solid #334155;
+  background: #020617;
+  color: #e5e7eb;
   outline: none;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
-input:focus {
-  border-color: #4CAF50;
+input:focus,
+textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px #38bdf8;
 }
 
-/* Add Button Style */
+textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+/* ===== BUTTONS ===== */
 button {
- 
-  background-color: burlywood;
-  padding: 12px 20px;
-  margin: 5px 2px;
-  border: none;
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
   border-radius: 8px;
-  font-weight: bold;
+  border: none;
   cursor: pointer;
-  transition: 0.2s;
+  font-weight: 600;
+  background: linear-gradient(135deg, #38bdf8, #22d3ee);
+  color: #020617;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
 }
 
-/* Task List Style */
-ul {
-  list-style: none;
-  padding: 0;
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
 }
 
-li {
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  padding: 12px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: 0.2s;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-li:hover {
-  background-color: #fafafa;
+/* ===== ERROR ===== */
+.error {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
 }
 
-/* Checkbox Style */
-input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+/* ===== TASK LIST ===== */
+.box {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.taskBox {
+  background: linear-gradient(145deg, #020617, #020617);
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.4rem;
+  position: relative;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.taskBox:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+}
+
+.taskBox h3 {
+  font-size: 1.1rem;
+}
+
+.taskBox p {
+  font-size: 0.85rem;
+  color: #cbd5f5;
+}
+
+/* ===== CHECKBOX ===== */
+.taskBox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
   cursor: pointer;
-  accent-color: #4CAF50;
 }
 
-/* Delete Button Specific */
-li button {
-  background-color: transparent;
-  color: #ff4444;
-  padding: 5px 10px;
-  font-size: 14px;
+/* ===== DELETE BUTTON ===== */
+.taskBox button {
+  background: linear-gradient(135deg, #f87171, #ef4444);
+  color: white;
+  margin-top: 0.6rem;
 }
 
-li button:hover {
-  background-color: #ffe5e5;
-  color: #cc0000;
-}
-
-
-
-/* Loading Spinner Styles */
+/* ===== LOADING ===== */
 .spinner-container {
-    text-align: center;
-    padding: 20px;
-    color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .spinner {
-    border: 4px solid #f3f3f3; /* Light grey */
-    border-top: 4px solid #d81b60; /* Tera Pink theme color */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px auto;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 4px solid #1e293b;
+  border-top-color: #38bdf8;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== SMALL SCREEN ===== */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+  }
 }
