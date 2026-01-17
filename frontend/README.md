@@ -1,16 +1,157 @@
-# React + Vite
+MERN AI Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and practical Task Manager application built using the MERN Stack, with an AI-powered task generation feature using Google Gemini.
 
-Currently, two official plugins are available:
+This app helps users manage their daily tasks and also allows them to generate sub-tasks automatically with the help of AI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
 
-## React Compiler
+User registration and login using JWT authentication
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Create, view, update, and delete tasks
 
-## Expanding the ESLint configuration
+AI-powered task generation using Google Gemini
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Mark tasks as completed or pending
+
+User-specific tasks (data is private and secure)
+
+Clean and modern dark UI
+
+AI Task Generator
+
+Users can enter a task title and let AI generate sub-tasks automatically.
+
+Example:
+
+Task: Learn MERN Stack
+
+AI generates:
+
+- Learn MongoDB basics
+- Understand Express and APIs
+- Practice React fundamentals
+- Learn Node.js concepts
+- Build a small project
+
+Tech Stack
+Frontend
+
+React (Vite)
+
+Fetch API
+
+Custom CSS (Dark Theme)
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB with Mongoose
+
+JWT Authentication
+
+AI
+
+Google Gemini
+
+SDK: @google/genai
+
+Model: gemini-3-flash-preview
+
+Project Structure
+backend/
+ └─ src/
+    ├─ routes/
+    │  ├─ taskRoutes.js
+    │  ├─ userRoutes.js
+    │  └─ aiRoutes.js
+    ├─ middlewares/
+    │  └─ authMiddleware.js
+    ├─ app.js
+    └─ server.js
+
+frontend/
+ └─ src/
+    ├─ components/
+    │  ├─ Login.jsx
+    │  ├─ HomeApp.jsx
+    │  └─ TaskForm.jsx
+    ├─ App.jsx
+    └─ App.css
+
+Environment Variables
+
+Create a .env file inside the backend folder:
+
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+GEMINI_API_KEY=your_gemini_api_key
+
+How to Run the Project
+Backend
+cd backend
+npm install
+node --env-file=.env --watch src/server.js
+
+Frontend
+cd frontend
+npm install
+npm run dev
+
+
+Authentication Flow
+
+User registers or logs in
+
+Backend generates a JWT token
+
+Token is stored in browser localStorage
+
+All protected routes use JWT middleware
+
+Each user can access only their own tasks
+
+Error Handling
+
+Input validation on both frontend and backend
+
+Proper error messages for authentication and API failures
+
+AI errors are handled gracefully
+
+Why This Project?
+
+This project demonstrates:
+
+Real-world MERN stack usage
+
+Clean backend architecture
+
+Secure authentication using JWT
+
+Practical AI integration
+
+Good separation of concerns
+
+Perfect for portfolios, interviews, and learning full-stack development with AI.
+
+Future Improvements
+
+Refresh token implementation
+
+AI response streaming
+
+Rate limiting on AI routes
+
+Better mobile responsiveness
+
+UI animations and polish
+
+Final Note
+
+This is more than a basic CRUD app.
+It combines MERN + AI to solve a real productivity problem in a clean and practical way.
