@@ -157,8 +157,3 @@ This is more than a basic CRUD app.
 It combines MERN + AI to solve a real productivity problem in a clean and practical way.
 
 
-✅ Ye version bilkul ready hai **GitHub me `README.md` ke liye**. Paste karte hi headings, code blocks, lists aur emojis sab perfectly render honge.  
-
-Agar chaho to mai **ek aur version bana du jisme GitHub badges (Node, React, MongoDB, License) bhi add ho** jo aur professional lage.  
-
-Kya mai wo version bana doon?
